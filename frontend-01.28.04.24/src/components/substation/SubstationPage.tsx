@@ -14,7 +14,10 @@ const SubstationPage = () => {
   }, [getAllSStation]);
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-6">
+      <h2 className="text-[16px] uppercase tracking-wider font-bold mb-2">
+        Список подстанций
+      </h2>
       <DataTable columns={Columns} data={substationList} />
     </div>
   );

@@ -65,7 +65,7 @@ public class SubstationController {
     public ResponseEntity<String> deleteSubstation(@PathVariable Integer id) {
         service.deleteSubstation(id);
         return new ResponseEntity<>(String.format(
-                "The substation with the name '%s' has been deleted from the database.", id),
+                "The Substation with the id '%s' has been deleted from the database.", id),
                 HttpStatus.OK);
     }
 
