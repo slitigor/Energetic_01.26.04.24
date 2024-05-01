@@ -7,7 +7,7 @@ import ru.slitigor.energetic.model.enums.Voltage;
 import java.util.List;
 
 public interface SwitchgearService {
-    Long getIdByTypeVoltageStationId(SGType sgType, Voltage voltage, Integer sId);
+    Long getIdBySwitchgear(Switchgear switchgear);
     Switchgear getSwitchgearById(Long id);
     List<Switchgear> getAllSwitchgear();
     Switchgear createSwitchgear(Switchgear switchgear);

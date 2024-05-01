@@ -1,4 +1,4 @@
-package ru.slitigor.energetic.repository.impl;
+package ru.slitigor.energetic.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

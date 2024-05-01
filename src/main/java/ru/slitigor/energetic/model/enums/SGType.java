@@ -16,7 +16,7 @@ public enum SGType {
         return this.value;
     }
 
-    public SGType getTypeByVal(String val) {
+    public static SGType getTypeByVal(String val) {
         for (SGType t: SGType.values())
             if (t.value.equals(val)) return t;
         return null;

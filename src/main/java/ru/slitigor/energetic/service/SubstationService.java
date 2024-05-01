@@ -5,7 +5,7 @@ import ru.slitigor.energetic.model.Substation;
 import java.util.List;
 
 public interface SubstationService {
-    Integer getIdByNameAndDId(String name, Integer dId);
+    Integer getIdBySubstation(Substation substation);
     Substation getSubstationById(Integer id);
     List<Substation> getAllSubstation();
     Substation createSubstation(Substation substation);

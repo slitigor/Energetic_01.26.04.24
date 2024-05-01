@@ -59,7 +59,7 @@ public class DistrictController {
         return new ResponseEntity<>(districtDto, HttpStatus.OK);
     }
 
-    @DeleteMapping("?{name}")
+    @DeleteMapping("/{name}")
     public ResponseEntity<String> deleteDistrict(@PathVariable String name) {
         service.deleteDistrict(name);
         return new ResponseEntity<>(String.format(

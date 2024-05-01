@@ -23,6 +23,13 @@ export interface IAddress {
 
 export interface IDistrict {
   name: string;
-  dDesc?: string;
+  ddesc?: string;
   address: IAddress;
+}
+
+export interface ISubstation {
+  id: number;
+  name: string;
+  psSchema: string;
+  district: IDistrict;
 }
