@@ -33,3 +33,10 @@ export interface ISubstation {
   psSchema: string;
   district: IDistrict;
 }
+
+export interface ISwitchgear {
+  id: number;
+  sqType: string;
+  voltage: string;
+  substation: ISubstation;
+}
