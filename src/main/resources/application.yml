@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/energetic_24
+    username: postgres
+    password: 5EQnuNKY41r6
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
