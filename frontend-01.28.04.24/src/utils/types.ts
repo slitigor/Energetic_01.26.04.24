@@ -20,3 +20,9 @@ export interface IAddress {
   city: string;
   street: string;
 }
+
+export interface IDistrict {
+  name: string;
+  dDesc?: string;
+  address: IAddress;
+}
