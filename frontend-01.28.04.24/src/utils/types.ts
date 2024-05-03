@@ -40,3 +40,10 @@ export interface ISwitchgear {
   voltage: string;
   substation: ISubstation;
 }
+
+export interface IBusBar {
+  id: number;
+  isSection: boolean;
+  numb: number;
+  switchgear: ISwitchgear;
+}

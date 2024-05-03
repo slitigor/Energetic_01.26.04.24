@@ -5,9 +5,9 @@ import ru.slitigor.energetic.model.BusBar;
 import java.util.List;
 
 public interface BusBarService {
-    Long getIdByIsSectionNumbSwId(Boolean isSection, int numb, Long SId);
+    Long getIdByBusBar(BusBar busBar);
     BusBar getBusBarById(Long id);
-    List<BusBar> getAllSS();
+    List<BusBar> getAllBB();
     BusBar createBusBar(BusBar busbar);
     BusBar updateBusBar(Long id, BusBar busbar);
     void deleteBusBar(Long id);

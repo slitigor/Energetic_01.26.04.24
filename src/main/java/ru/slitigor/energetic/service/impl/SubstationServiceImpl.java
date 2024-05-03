@@ -77,8 +77,7 @@ public class SubstationServiceImpl implements SubstationService {
     private Substation updateLinkDistrict(Substation substation) {
         District district = districtService.getDistrictByName(substation.getDistrict().getName());
         substation.setDistrict(district);
-        if (!district.getSubstations().contains(substation))
-            district.getSubstations().add(substation);
+        district.getSubstations().add(substation);
 
         return substation;
     }
