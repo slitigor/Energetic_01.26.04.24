@@ -25,7 +25,7 @@ const Columns: ColumnDef<IBusBar>[] = [
       const switchgear = row.original.switchgear;
       return (
         <div>
-          {switchgear.sqType} {switchgear.voltage}
+          {switchgear.sgType} {switchgear.voltage}
         </div>
       );
     },

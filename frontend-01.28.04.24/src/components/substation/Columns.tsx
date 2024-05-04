@@ -32,7 +32,7 @@ export const Columns: ColumnDef<ISubstation>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="ID"
+        title="id"
         titleList={substationColName}
       />
     ),

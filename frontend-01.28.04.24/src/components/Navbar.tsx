@@ -45,6 +45,14 @@ const Navbar = ({ setTab }: { setTab: (arg: string) => void }) => {
           </NavigationMenuItem>
           <NavigationMenuItem className="cursor-pointer">
             <NavigationMenuLink
+              onClick={() => setTab("switchgear")}
+              className={navigationMenuTriggerStyle()}
+            >
+              Распредустройства
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+          <NavigationMenuItem className="cursor-pointer">
+            <NavigationMenuLink
               onClick={() => setTab("order")}
               className={navigationMenuTriggerStyle()}
             >

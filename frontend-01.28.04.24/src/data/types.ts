@@ -7,6 +7,18 @@ export const schemaList: string[] = [
   "35/6 кВ",
 ];
 
+export const sgTypeList: string[] = ["ОРУ", "ЗРУ", "КРУ", "КРУН"];
+
+export const voltageList: string[] = [
+  "220 кВ",
+  "110 кВ",
+  "35 кВ",
+  "10 кВ",
+  "6 кВ",
+  "0.4 кВ",
+  "0.22 кВ",
+];
+
 export const sectionList: string[] = [
   "в ТОРО",
   "вне ТОРО",
@@ -21,11 +33,25 @@ export interface IAddress {
   street: string;
 }
 
+export const addressColName = new Map([
+  ["zip", "Почтовый индекс"],
+  ["city", "Населённый пункт"],
+  ["street", "Улица, дом"],
+  ["actions", "Действия"],
+]);
+
 export interface IDistrict {
   name: string;
   ddesc?: string;
   address: IAddress;
 }
+
+export const districtColName = new Map([
+  ["name", "Название"],
+  ["ddesc", "Описание"],
+  ["address", "Адрес"],
+  ["actions", "Действия"],
+]);
 
 export interface ISubstation {
   id: number;
@@ -44,10 +70,18 @@ export const substationColName = new Map([
 
 export interface ISwitchgear {
   id: number;
-  sqType: string;
+  sgType: string;
   voltage: string;
   substation: ISubstation;
 }
+
+export const switchgearColName = new Map([
+  ["id", "ID"],
+  ["sqType", "Вид РУ"],
+  ["voltage", "Напряжение"],
+  ["substation", "Подстанция"],
+  ["actions", "Действия"],
+]);
 
 export interface IBusBar {
   id: number;
@@ -55,3 +89,11 @@ export interface IBusBar {
   numb: number;
   switchgear: ISwitchgear;
 }
+
+export const busbarColName = new Map([
+  ["id", "ID"],
+  ["isSection", "Секция/Система"],
+  ["numb", "Номер"],
+  ["switchgear", "Вид РУ"],
+  ["actions", "Действия"],
+]);

@@ -111,7 +111,7 @@ const AddSubstationDialog = () => {
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="district" className="text-right">
-                Схема ПС
+                РЭС
               </Label>
               <Select
                 onValueChange={handleChangeDistrict}
