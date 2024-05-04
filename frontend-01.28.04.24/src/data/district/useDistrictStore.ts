@@ -1,4 +1,4 @@
-import { IDistrict } from "@/utils/types";
+import { IDistrict } from "@/data/types";
 import { create } from "zustand";
 import { appDataBase } from "../helper";
 

@@ -1,5 +1,5 @@
-import { useAddressStore } from "@/model/address/useAddressStore";
-import DataTable from "../ui/DataTable";
+import { useAddressStore } from "@/data/address/useAddressStore";
+import { DataTable } from "../ui/DataTable";
 import { Columns } from "./Columns";
 import { useEffect } from "react";
 

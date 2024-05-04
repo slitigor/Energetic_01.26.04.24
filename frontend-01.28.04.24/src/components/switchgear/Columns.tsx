@@ -1,4 +1,4 @@
-import { ISwitchgear } from "@/utils/types";
+import { ISwitchgear } from "@/data/types";
 import { ColumnDef } from "@tanstack/react-table";
 
 export const Columns: ColumnDef<ISwitchgear>[] = [

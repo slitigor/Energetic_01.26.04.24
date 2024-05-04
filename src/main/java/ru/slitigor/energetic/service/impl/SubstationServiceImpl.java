@@ -45,7 +45,7 @@ public class SubstationServiceImpl implements SubstationService {
     public Substation createSubstation(Substation substation) {
         Optional<Substation> existsSubstation =
                 repository.findByNameAndDistrict_Id(substation.getName(),
-                        getIdBySubstation(substation));
+                        districtService.getDistrictByName(substation.getDistrict().getName()).getId());
         if (existsSubstation.isPresent()) throw new ItemAlreadyExistsException(String.format(
                 "The Substation named '%s' already exists in the database!", substation.getName()
         ));

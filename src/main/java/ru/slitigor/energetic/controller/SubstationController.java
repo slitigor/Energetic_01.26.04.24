@@ -51,7 +51,7 @@ public class SubstationController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SubstationDto> updareSubstation(@PathVariable Integer id,
+    public ResponseEntity<SubstationDto> updateSubstation(@PathVariable Integer id,
                                                           @RequestBody @Valid SubstationDto substationDto,
                                                           BindingResult bindingResult) {
         if (bindingResult.hasErrors()) throw new ValidationException(ErrorMessageBuilder

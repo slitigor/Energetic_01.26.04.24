@@ -1,4 +1,4 @@
-import { ISubstation } from "@/utils/types";
+import { ISubstation } from "@/data/types";
 import { create } from "zustand";
 import { appDataBase } from "../helper";
 

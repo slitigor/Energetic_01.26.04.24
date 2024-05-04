@@ -1,6 +1,6 @@
-import { useDistrictStore } from "@/model/district/useDistrictStore";
+import { useDistrictStore } from "@/data/district/useDistrictStore";
 import { useEffect } from "react";
-import DataTable from "../ui/DataTable";
+import { DataTable } from "../ui/DataTable";
 import { Columns } from "./Column";
 
 const DistrictPage = () => {

@@ -1,7 +1,9 @@
-import { useSubstationStore } from "@/model/substation/useSubstationStore";
+import { useSubstationStore } from "@/data/substation/useSubstationStore";
 import { useEffect } from "react";
-import DataTable from "../ui/DataTable";
+import { DataTable } from "../ui/DataTable";
 import { Columns } from "./Columns";
+import { substationColName } from "@/data/types";
+import AddSubstationDialog from "./AddSubstationDialog";
 
 const SubstationPage = () => {
   const [substationList, getAllSStation] = useSubstationStore((state) => [
@@ -18,7 +20,12 @@ const SubstationPage = () => {
       <h2 className="text-[16px] uppercase tracking-wider font-bold mb-2">
         Список подстанций
       </h2>
-      <DataTable columns={Columns} data={substationList} />
+      <DataTable
+        columns={Columns}
+        data={substationList}
+        columnName={substationColName}
+        addedDialog={<AddSubstationDialog />}
+      />
     </div>
   );
 };

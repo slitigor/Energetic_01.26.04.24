@@ -1,4 +1,4 @@
-import { IAddress } from "@/utils/types";
+import { IAddress } from "@/data/types";
 import { create } from "zustand";
 import { appDataBase } from "../helper";
 

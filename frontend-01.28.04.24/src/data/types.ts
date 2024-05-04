@@ -34,6 +34,14 @@ export interface ISubstation {
   district: IDistrict;
 }
 
+export const substationColName = new Map([
+  ["id", "ID"],
+  ["name", "Называние ПС"],
+  ["psSchema", "Схема ПС"],
+  ["district", "РЭС"],
+  ["actions", "Действия"],
+]);
+
 export interface ISwitchgear {
   id: number;
   sqType: string;

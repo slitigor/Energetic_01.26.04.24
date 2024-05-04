@@ -1,6 +1,6 @@
-import { useSwitchgearStore } from "@/model/switchgear/useSwitchgearStore";
+import { useSwitchgearStore } from "@/data/switchgear/useSwitchgearStore";
 import { useEffect } from "react";
-import DataTable from "../ui/DataTable";
+import { DataTable } from "../ui/DataTable";
 import { Columns } from "./Columns";
 
 const SwitchgearPage = () => {
