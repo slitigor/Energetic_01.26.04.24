@@ -43,7 +43,9 @@ public class SwitchgearServiceImpl implements SwitchgearService {
     @Override
     @Transactional
     public Switchgear createSwitchgear(Switchgear switchgear) {
-        Optional<Switchgear> isExists = repository.findById(getIdBySwitchgear(switchgear));
+        Optional<Switchgear> isExists = repository.findBySgTypeAndVoltageAndSubstation_Id(
+                switchgear.getSgType(), switchgear.getVoltage(), switchgear.getSubstation().getId()
+        );
         if(isExists.isPresent()) throw new ItemAlreadyExistsException(String.format(
                 "The Switchgear ID '%s' already exists in the database!", switchgear.getId()
         ));
@@ -71,8 +73,8 @@ public class SwitchgearServiceImpl implements SwitchgearService {
     }
 
     private Switchgear updateLinkSubstation(Switchgear switchgear) {
-        Integer id = substationService.getIdBySubstation(switchgear.getSubstation());
-        Substation substation = substationService.getSubstationById(id);
+        Substation substation = substationService.getByNameAndDistrictId(switchgear.getSubstation().getName(),
+                switchgear.getSubstation().getDistrict().getId());
         switchgear.setSubstation(substation);
         substation.getSwitchgearList().add(switchgear);
 

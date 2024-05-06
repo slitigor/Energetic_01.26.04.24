@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class SwitchgearDto {
     private Long id;
-    private String sqType;
+    private String sgType;
     private String voltage;
     private SubstationDto substation;
 }

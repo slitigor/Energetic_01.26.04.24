@@ -2,6 +2,7 @@ import { ISwitchgear, switchgearColName } from "@/data/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "../ui/checkbox";
 import { DataTableColumnHeader } from "../ui/column-header";
+import EditSwitchgearDialog from "./EditSwitchgearDialog";
 
 export const Columns: ColumnDef<ISwitchgear>[] = [
   {
@@ -37,11 +38,11 @@ export const Columns: ColumnDef<ISwitchgear>[] = [
     ),
   },
   {
-    accessorKey: "sqType",
+    accessorKey: "sgType",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="sqType"
+        title="sgType"
         titleList={switchgearColName}
       />
     ),
@@ -69,6 +70,14 @@ export const Columns: ColumnDef<ISwitchgear>[] = [
       const substation = row.original.substation;
 
       return <div>{substation.name}</div>;
+    },
+  },
+  {
+    id: "actions",
+    header: "Действия",
+    cell: ({ row }) => {
+      const switchgear = row.original;
+      return <EditSwitchgearDialog switchgear={switchgear} />;
     },
   },
 ];

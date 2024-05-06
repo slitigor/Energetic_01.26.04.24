@@ -77,7 +77,7 @@ export interface ISwitchgear {
 
 export const switchgearColName = new Map([
   ["id", "ID"],
-  ["sqType", "Вид РУ"],
+  ["sgType", "Вид РУ"],
   ["voltage", "Напряжение"],
   ["substation", "Подстанция"],
   ["actions", "Действия"],

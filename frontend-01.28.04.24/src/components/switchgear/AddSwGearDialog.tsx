@@ -30,11 +30,20 @@ const AddSwGearDialog = () => {
     state.getAllSStation,
   ]);
   const [isAddedDialog, setIsAddedDialog] = useState(false);
-  const [sgType, setSqType] = useState("");
+  const [sgType, setSgType] = useState("");
   const [voltage, setVoltage] = useState("");
   const [substation, setSubstation] = useState<ISubstation>();
 
   const handleSaveClick = () => {
+    console.log(
+      "type: ",
+      sgType,
+      " voltage: ",
+      voltage,
+      " substation: ",
+      substation?.name
+    );
+
     if (sgType && voltage && substation !== undefined) {
       createSwGear({
         id: Math.floor(Math.random() * 10000),
@@ -42,7 +51,7 @@ const AddSwGearDialog = () => {
         voltage: voltage,
         substation: substation,
       });
-      setSqType("");
+      setSgType("");
       setVoltage("");
       setSubstation;
     }
@@ -77,14 +86,14 @@ const AddSwGearDialog = () => {
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="name" className="text-right">
-                Название ПС
+              <Label htmlFor="sgType" className="text-right">
+                Вид РУ
               </Label>
-              <Select>
+              <Select onValueChange={setSgType}>
                 <SelectTrigger className="w-[220px]">
-                  <SelectValue placeholder="Вид РУ" />
+                  <SelectValue placeholder="Выбери вид РУ" />
                 </SelectTrigger>
-                <SelectContent id="sqType">
+                <SelectContent id="sgType">
                   <SelectGroup>
                     {sgTypeList.map((type) => (
                       <SelectItem value={type} key={type}>
@@ -99,9 +108,9 @@ const AddSwGearDialog = () => {
               <Label htmlFor="voltage" className="text-right">
                 Напряжение
               </Label>
-              <Select>
+              <Select onValueChange={setVoltage}>
                 <SelectTrigger className="w-[220px]">
-                  <SelectValue placeholder="Вид РУ" />
+                  <SelectValue placeholder="Выбери напряжение" />
                 </SelectTrigger>
                 <SelectContent id="voltage">
                   <SelectGroup>
@@ -116,11 +125,11 @@ const AddSwGearDialog = () => {
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="substation" className="text-right">
-                Адрес
+                Подстанция
               </Label>
               <Select onValueChange={(e) => changeSubstation(e)}>
                 <SelectTrigger className="w-[220px]">
-                  <SelectValue placeholder="Адрес" />
+                  <SelectValue placeholder="Подстанция" />
                 </SelectTrigger>
                 <SelectContent id="substation">
                   <SelectGroup>
@@ -130,7 +139,6 @@ const AddSwGearDialog = () => {
                         key={substation.id}
                       >
                         ПС&nbsp;{substation.psSchema}&nbsp;{substation.name}
-                        {substation.psSchema}
                       </SelectItem>
                     ))}
                   </SelectGroup>

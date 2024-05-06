@@ -53,18 +53,10 @@ const Navbar = ({ setTab }: { setTab: (arg: string) => void }) => {
           </NavigationMenuItem>
           <NavigationMenuItem className="cursor-pointer">
             <NavigationMenuLink
-              onClick={() => setTab("order")}
+              onClick={() => setTab("bus-bar")}
               className={navigationMenuTriggerStyle()}
             >
-              Заказы
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem className="cursor-pointer">
-            <NavigationMenuLink
-              onClick={() => setTab("employee")}
-              className={navigationMenuTriggerStyle()}
-            >
-              Сотрудники
+              Системы шин
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>

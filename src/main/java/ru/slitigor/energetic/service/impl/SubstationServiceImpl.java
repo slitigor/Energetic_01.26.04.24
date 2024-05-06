@@ -36,6 +36,12 @@ public class SubstationServiceImpl implements SubstationService {
     }
 
     @Override
+    public Substation getByNameAndDistrictId(String name, Integer id) {
+        return repository.findByNameAndDistrict_Id(name, id).orElseThrow(() ->
+                new ResourceNotFoundException("Substation", "id", id.toString()));
+    }
+
+    @Override
     public List<Substation> getAllSubstation() {
         return repository.findAll();
     }

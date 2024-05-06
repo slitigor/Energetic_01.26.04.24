@@ -15,7 +15,7 @@ public class SwitchgearMapper {
     public Switchgear convertToModel(SwitchgearDto dto) {
         Switchgear model = new Switchgear();
         model.setId(dto.getId());
-        model.setSgType(SGType.getTypeByVal(dto.getSqType()));
+        model.setSgType(SGType.getTypeByVal(dto.getSgType()));
         model.setVoltage(Voltage.getNominalByVal(dto.getVoltage()));
         model.setSubstation(substationMapper.convertToModel(dto.getSubstation()));
 
@@ -25,7 +25,7 @@ public class SwitchgearMapper {
     public SwitchgearDto convertToDto(Switchgear model) {
         SwitchgearDto dto = new SwitchgearDto();
         dto.setId(model.getId());
-        dto.setSqType(model.getSgType().getValue());
+        dto.setSgType(model.getSgType().getValue());
         dto.setVoltage(model.getVoltage().getValue());
         dto.setSubstation(substationMapper.convertToDto(model.getSubstation()));
 

@@ -5,7 +5,6 @@ import ru.slitigor.energetic.model.BusBar;
 import java.util.List;
 
 public interface BusBarService {
-    Long getIdByBusBar(BusBar busBar);
     BusBar getBusBarById(Long id);
     List<BusBar> getAllBB();
     BusBar createBusBar(BusBar busbar);

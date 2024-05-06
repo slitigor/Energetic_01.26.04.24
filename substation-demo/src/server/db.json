@@ -1,0 +1,66 @@
+{
+  "substation": [
+    {
+      "id": "1",
+      "name": "Ю.Копи"
+    },
+    {
+      "id": "2",
+      "name": "С.Копи"
+    },
+    {
+      "id": "3",
+      "name": "Пластмасс"
+    }
+  ],
+  "swgears": [
+    {
+      "id": "1",
+      "voltage": 110,
+      "sgType": "ОРУ",
+      "numb": 2,
+      "isSec": "false",
+      "substationId": "1"
+    },
+    {
+      "id": "2",
+      "voltage": 35,
+      "sgType": "ОРУ",
+      "numb": 2,
+      "isSec": "true",
+      "substationId": "1"
+    },
+    {
+      "id": "4",
+      "voltage": 35,
+      "sgType": "ОРУ",
+      "numb": 2,
+      "isSec": "false",
+      "substationId": "2"
+    },
+    {
+      "id": "5",
+      "voltage": 6,
+      "sgType": "ЗРУ",
+      "numb": 2,
+      "isSec": "false",
+      "substationId": "2"
+    },
+    {
+      "id": "6",
+      "voltage": 110,
+      "sgType": "ОРУ",
+      "numb": 2,
+      "isSec": "true",
+      "substationId": "3"
+    },
+    {
+      "id": "7",
+      "voltage": 10,
+      "sgType": "КРУ",
+      "numb": 2,
+      "isSec": "true",
+      "substationId": "3"
+    }
+  ]
+}

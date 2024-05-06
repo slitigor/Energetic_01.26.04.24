@@ -1,6 +1,6 @@
-import { useSubstationStore } from "@/data/substation/useSubstationStore";
+import { useBusBarStore } from "@/data/busbar/useBusBarStore";
 import { useSwitchgearStore } from "@/data/switchgear/useSwitchgearStore";
-import { ISwitchgear, sgTypeList, voltageList } from "@/data/types";
+import { IBusBar } from "@/data/types";
 import { FC, useEffect, useState } from "react";
 import {
   Dialog,
@@ -22,8 +22,8 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
-import { MoreHorizontal } from "lucide-react";
 import { Label } from "../ui/label";
+import { Checkbox } from "../ui/checkbox";
 import {
   Select,
   SelectContent,
@@ -32,44 +32,39 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { MoreHorizontal } from "lucide-react";
+import { Input } from "../ui/input";
 
 interface DialogProps {
-  switchgear: ISwitchgear;
+  busBar: IBusBar;
 }
 
-const EditSwitchgearDialog: FC<DialogProps> = ({ switchgear }) => {
-  const [updateSwGear, deleteSwGear] = useSwitchgearStore((state) => [
-    state.updateSwGear,
-    state.deleteSwGear,
+const EditBusBarDialog: FC<DialogProps> = ({ busBar }) => {
+  const [updateBB, deleteBB] = useBusBarStore((state) => [
+    state.updateBB,
+    state.deleteBB,
   ]);
-  const [substationList, getAllSStation] = useSubstationStore((state) => [
-    state.substationList,
-    state.getAllSStation,
+  const [switchgearList, getAllSwGear] = useSwitchgearStore((state) => [
+    state.switchgearList,
+    state.getAllSwGear,
   ]);
-  const [editSwGear, setEditSwGear] = useState<ISwitchgear>(switchgear);
+  const [editBB, setEditBB] = useState<IBusBar>(busBar);
   const [isEditDialog, setIsEditDialog] = useState(false);
   const [isDelDialog, setIsDelDialog] = useState(false);
 
   const handleSaveClick = () => {
-    if (
-      editSwGear.sgType &&
-      editSwGear.voltage &&
-      editSwGear.substation !== undefined
-    ) {
-      updateSwGear(switchgear.id, editSwGear);
-    }
+    if (editBB.numb && editBB.switchgear) updateBB(busBar.id, editBB);
   };
 
-  const changeSubstation = (id: string) => {
+  const changeSwitchgear = (id: string) => {
     const intId = parseInt(id);
-    const station = substationList.find((s) => s.id === intId);
-    if (station !== undefined)
-      setEditSwGear({ ...editSwGear, substation: station });
+    const swGear = switchgearList.find((s) => s.id === intId);
+    if (swGear !== undefined) setEditBB({ ...editBB, switchgear: swGear });
   };
 
   useEffect(() => {
-    getAllSStation();
-  }, [getAllSStation]);
+    getAllSwGear();
+  }, [getAllSwGear]);
 
   return (
     <Dialog>
@@ -122,8 +117,9 @@ const EditSwitchgearDialog: FC<DialogProps> = ({ switchgear }) => {
             <div>
               <h2>Вы действительно хотите удалить эту запись:</h2>
               <p>
-                {switchgear.sgType}&nbsp;{switchgear.voltage} на ПС&nbsp;
-                {switchgear.substation.name}
+                {busBar.numb}&nbsp;{busBar.isSection ? "С" : "СШ"}&nbsp;
+                {busBar.switchgear.voltage}&nbsp;ПС&nbsp;
+                {busBar.switchgear.substation.name}
               </p>
             </div>
             <DialogFooter>
@@ -131,7 +127,7 @@ const EditSwitchgearDialog: FC<DialogProps> = ({ switchgear }) => {
                 type="submit"
                 onClick={() => {
                   setIsDelDialog(false);
-                  deleteSwGear(switchgear.id);
+                  deleteBB(busBar.id);
                 }}
               >
                 Удалить
@@ -150,70 +146,44 @@ const EditSwitchgearDialog: FC<DialogProps> = ({ switchgear }) => {
               <DialogTitle>Редактирование</DialogTitle>
             </DialogHeader>
             <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="sgType" className="text-right">
-                  Вид РУ
+              <div className="grid grid-cols-[180px_1fr] items-center gap-4">
+                <Label htmlFor="isSection" className="text-right">
+                  Секционированная СШ?
                 </Label>
-                <Select
-                  onValueChange={(e) =>
-                    setEditSwGear({ ...editSwGear, sgType: e })
+                <Checkbox
+                  checked={editBB.isSection}
+                  onCheckedChange={(value) =>
+                    setEditBB({ ...editBB, isSection: !!value })
                   }
-                  defaultValue={switchgear.sgType}
-                >
-                  <SelectTrigger className="w-[220px]">
+                />
+              </div>
+              <div className="grid grid-cols-[180px_1fr] items-center gap-4">
+                <Label htmlFor="numb" className="text-right">
+                  Номер
+                </Label>
+                <Input
+                  type="number"
+                  id="numb"
+                  value={editBB.numb}
+                  onChange={(e) =>
+                    setEditBB({ ...editBB, numb: parseInt(e.target.value) })
+                  }
+                />
+              </div>
+              <div className="grid grid-cols-[180px_1fr] items-center gap-4">
+                <Label htmlFor="switchgear" className="text-right">
+                  Распредустройство
+                </Label>
+                <Select onValueChange={(e) => changeSwitchgear(e)}>
+                  <SelectTrigger>
                     <SelectValue placeholder="Вид РУ" />
                   </SelectTrigger>
-                  <SelectContent id="sgType">
+                  <SelectContent id="switchgear">
                     <SelectGroup>
-                      {sgTypeList.map((type) => (
-                        <SelectItem value={type} key={type}>
-                          {type}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="voltage" className="text-right">
-                  Напряжение
-                </Label>
-                <Select
-                  onValueChange={(e) =>
-                    setEditSwGear({ ...editSwGear, voltage: e })
-                  }
-                  defaultValue={switchgear.voltage}
-                >
-                  <SelectTrigger className="w-[220px]">
-                    <SelectValue placeholder="Напряжение" />
-                  </SelectTrigger>
-                  <SelectContent id="voltage">
-                    <SelectGroup>
-                      {voltageList.map((volt) => (
-                        <SelectItem value={volt} key={volt}>
-                          {volt}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="substation" className="text-right">
-                  Подстанция
-                </Label>
-                <Select onValueChange={(e) => changeSubstation(e)}>
-                  <SelectTrigger className="w-[220px]">
-                    <SelectValue placeholder="Подстанция" />
-                  </SelectTrigger>
-                  <SelectContent id="substation">
-                    <SelectGroup>
-                      {substationList.map((substation) => (
-                        <SelectItem
-                          value={substation.id.toString()}
-                          key={substation.id}
-                        >
-                          ПС&nbsp;{substation.psSchema}&nbsp;{substation.name}
+                      {switchgearList.map((s) => (
+                        <SelectItem value={s.id.toString()} key={s.id}>
+                          {s.sgType}&nbsp;{s.voltage}&nbsp;ПС&nbsp;
+                          {s.substation.name}
                         </SelectItem>
                       ))}
                     </SelectGroup>
@@ -231,6 +201,9 @@ const EditSwitchgearDialog: FC<DialogProps> = ({ switchgear }) => {
               >
                 Сохранить
               </Button>
+              <DialogClose asChild>
+                <Button>Отмена</Button>
+              </DialogClose>
             </DialogFooter>
           </DialogContent>
         </DialogPortal>
@@ -239,4 +212,4 @@ const EditSwitchgearDialog: FC<DialogProps> = ({ switchgear }) => {
   );
 };
 
-export default EditSwitchgearDialog;
+export default EditBusBarDialog;

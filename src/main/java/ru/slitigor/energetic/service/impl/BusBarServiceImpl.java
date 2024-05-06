@@ -21,15 +21,6 @@ public class BusBarServiceImpl implements BusBarService {
     private final BusBarRepository repository;
     private final SwitchgearService switchgearService;
 
-
-    @Override
-    public Long getIdByBusBar(BusBar busBar) {
-        BusBar isExists = repository.findByIsSectionAndNumbAndSwitchgear_Id(busBar.getIsSection(),
-                busBar.getNumb(), busBar.getSwitchgear().getId()).orElseThrow(() ->
-                new ResourceNotFoundException("BusBar", "id", busBar.getId().toString()));
-        return isExists.getId();
-    }
-
     @Override
     public BusBar getBusBarById(Long id) {
         return repository.findById(id).orElseThrow(() ->
